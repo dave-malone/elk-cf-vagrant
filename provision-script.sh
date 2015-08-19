@@ -28,5 +28,7 @@ sudo service kibana4 start
 echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | sudo tee /etc/apt/sources.list.d/logstash.list
 sudo apt-get update
 sudo apt-get install logstash
+sudo service logstash stop
 sudo cp /vagrant/resources/syslog.conf /etc/logstash/conf.d/syslog.conf
-sudo service logstash restart
+sudo update-rc.d logstash defaults 97 8
+sudo service logstash start
